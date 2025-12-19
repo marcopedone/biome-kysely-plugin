@@ -9,5 +9,5 @@ language js
 		$a <: contains `'!=='`
 	},
 	$a <: contains `null`,
-	register_diagnostic(span=$a, message=$a, severity="error")
+	register_diagnostic(span=$a, message="Comparisons to null using '=' or '==' are not allowed. Use 'is' or 'is not' instead.", severity="error")
 }
