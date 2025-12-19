@@ -1,0 +1,13 @@
+language js
+
+`$fn($a)` where {
+	$fn <: contains `where`,
+	or {
+		$a <: contains `'='`,
+		$a <: contains `'=='`,
+		$a <: contains `'!='`,
+		$a <: contains `'!=='`
+	},
+	$a <: contains `null`,
+	register_diagnostic(span=$a, message=$a, severity="error")
+}
