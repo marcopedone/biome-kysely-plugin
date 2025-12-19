@@ -20,6 +20,6 @@ language js
 			$fn <: contains `executeTakeFirstOrThrow`
 		},
 		! $fn <: contains `where`,
-		register_diagnostic(span=$fn, message="where or delete statements must contain where()", severity="error")
+		register_diagnostic(span=$fn, message="update or delete statements must contain where()", severity="error")
 	}
 }
