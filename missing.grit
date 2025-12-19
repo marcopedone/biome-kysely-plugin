@@ -1,0 +1,25 @@
+language js
+
+`$fn($_)` where {
+	if ($fn <: contains `selectFrom`) {
+		or {
+			$fn <: contains `execute`,
+			$fn <: contains `executeTakeFirst`,
+			$fn <: contains `executeTakeFirstOrThrow`
+		},
+		! $fn <: contains `select`,
+		! $fn <: contains `selectAll`,
+		register_diagnostic(span=$fn, message="select statement must contain select() or selectAll()", severity="error")
+	} else if (or {
+		$fn <: contains `updateTable`,
+		$fn <: contains `deleteFrom`
+	}) {
+		or {
+			$fn <: contains `execute`,
+			$fn <: contains `executeTakeFirst`,
+			$fn <: contains `executeTakeFirstOrThrow`
+		},
+		! $fn <: contains `where`,
+		register_diagnostic(span=$fn, message="where or delete statements must contain where()", severity="error")
+	}
+}
