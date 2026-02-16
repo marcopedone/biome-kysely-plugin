@@ -1,0 +1,9 @@
+language js(typescript)
+
+`$chain.$exec()` where {
+    $exec <: or { `execute`, `executeTakeFirst`, `executeTakeFirstOrThrow` },
+    $chain <: contains `selectFrom`,
+    ! $chain <: contains `select`,
+    ! $chain <: contains `selectAll`,
+    register_diagnostic(span=$chain, message="select statement must contain select() or selectAll()", severity="error")
+}

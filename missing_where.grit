@@ -1,0 +1,8 @@
+language js(typescript)
+
+`$chain.$exec()` where {
+    $exec <: or { `execute`, `executeTakeFirst`, `executeTakeFirstOrThrow` },
+    or { $chain <: contains `updateTable`, $chain <: contains `deleteFrom` },
+    ! $chain <: contains `where`,
+    register_diagnostic(span=$chain, message="update or delete statements must contain where()", severity="error")
+}

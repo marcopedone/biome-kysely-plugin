@@ -6,7 +6,7 @@ biome.json
 ```
 {
 
-"plugins": ["missing.grit", "null.grit"],
+"plugins": ["missing_select.grit", "missing_where.grit", "null.grit"],
 ...rest of Biome configs
 
 }
