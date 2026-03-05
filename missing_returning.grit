@@ -1,0 +1,12 @@
+language js(typescript)
+
+`$chain.$exec()` where {
+	$exec <: `executeTakeFirstOrThrow`,
+	or {
+		$chain <: contains `deleteFrom`,
+		$chain <: contains `updateTable`,
+		$chain <: contains `insertInto`
+	},
+	! or { $chain <: contains `returning`, $chain <: contains `returningAll` },
+	register_diagnostic(span=$chain, message="insert, update or delete statements must return a value on executeTakeFirstOrThrow", severity="error")
+}
